@@ -14,12 +14,12 @@
             </router-link>
             <router-link to="/update" active-class="active" tag="button" exact class="side-btn">
                 <div class="link-container">
-                    Update Medicine
+                    Update By Medicine Id
                 </div>
             </router-link>
-            <router-link to="/about" active-class="active" tag="button" exact class="side-btn">
+            <router-link to="/code" active-class="active" tag="button" exact class="side-btn">
                 <div class="link-container">
-                    <!-- About -->
+                    Update By Barcode
                 </div>
             </router-link>
         </div>
