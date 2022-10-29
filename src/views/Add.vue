@@ -13,13 +13,13 @@
 
           <form @submit.prevent="submit" color="blue lighten-1">
             <vue-title title="Static Title"></vue-title>
-            <v-text-field type="" class="pl-10 pt-2 pr-10" v-bind="{ placeholder: 'MEDICINE'+ this.cant.toString() }" disabled></v-text-field>
-            <v-text-field class="pl-10 pt-2 pr-10" v-model="name" label="Generic Name" required></v-text-field>
-            <v-text-field class="pl-10 pt-2 pr-10" v-model="concentration" label="Concentration" required></v-text-field>
-            <v-text-field class="pl-10 pt-2 pr-10" v-model="form" label="Pharmaceutical Form" required></v-text-field>
-            <v-text-field type="Date" class="pl-10 pt-2 pr-10" v-model="expiration" hint="Expiration Date" required></v-text-field>
-            <v-text-field type="number" class="pl-10 pt-2 pr-10" v-model="quantity" label="Quantity" required></v-text-field>
-            <v-text-field class="pl-10 pt-2 pr-10" v-model="barcode" label="Barcode" required></v-text-field>
+            <v-text-field color="white" class="pl-10 pt-2 pr-10" v-model="cant" v-bind="{ placeholder: 'MEDICINE'+ this.cant.toString() }" label="MEDICINE ID" disabled></v-text-field>
+            <v-text-field color="white" class="pl-10 pt-2 pr-10" v-model="name" label="Generic Name" required></v-text-field>
+            <v-text-field color="white" class="pl-10 pt-2 pr-10" v-model="concentration" label="Concentration" required></v-text-field>
+            <v-text-field color="white" class="pl-10 pt-2 pr-10" v-model="form" label="Pharmaceutical Form" required></v-text-field>
+            <v-text-field color="white" type="Date" class="pl-10 pt-2 pr-10" v-model="expiration" hint="Expiration Date" required></v-text-field>
+            <v-text-field color="white" type="number" class="pl-10 pt-2 pr-10" v-model="quantity" label="Quantity" required></v-text-field>
+            <v-text-field color="white" class="pl-10 pt-2 pr-10" v-model="barcode" label="Barcode" required></v-text-field>
             <v-col cols="12" class="pb-3 pl-10 pt-2 pr-10">
               <v-btn @click="submit" block color="blue lighten-1">SUBMIT</v-btn>
             </v-col>
@@ -31,6 +31,16 @@
         <v-img :src="require('../assets/sym.png')" class="pl-20" contain height="400"/>
       </v-col>
     </v-row>
+
+    <div v-if="snb == true">
+      <v-snackbar v-model="snackbar" :timeout="-1" :value="true" bottom :multi-line="multiLine" color="primary">{{ text }}
+        <template v-slot:action="{ attrs }">
+          <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar> 
+    </div>
 
   </div>
 
@@ -54,6 +64,11 @@ export default {
     medicines: [],
     windows: null,
     cant: 0,
+    codes: [],
+    text: '',
+    snb: false,
+    multiLine: true,
+    snackbar: false
   }),
 
   created() {
@@ -69,22 +84,56 @@ export default {
       console.log('CANTIDADD '+this.id);
       console.log('QUA '+ this.qStr);
 
-      let data = {
-        "medicineid": this.id,
-        "name": this.name,
-        "concentration": this.concentration,
-        "form": this.form,
-        "expiration": this.expiration,
-        "quantity": this.qStr,
-        "code": this.barcode
-      }
-      await axios.post('http://localhost:8080/api/addmedicine', data)
-      .then((result) => {
-        console.log('SE LOOGROO');
-        console.log(result);
-      })
 
-      this.$router.push({name: 'Medicines'});
+
+      var tiempoTranscurrido = Date.now();
+      var hoy = new Date(tiempoTranscurrido);
+      var exp = new Date(this.expiration);
+      
+      if (exp > hoy) {
+        if (this.name.length > 0 && this.concentration.length > 0 && this.form.length > 0
+        && this.quantity > 0 && this.barcode.length == 13) {
+          for (var i = 0; i < this.cant; i++) {
+            if (this.codes[i] == this.barcode) {
+              this.snb = true;
+              this.snackbar = true;
+              this.text = 'CODE REPETIDO';
+              console.log('CODE REPETIDO')
+              break
+            } else if (i == this.cant-1){
+              let data = {
+                "medicineid": this.id,
+                "name": this.name,
+                "concentration": this.concentration,
+                "form": this.form,
+                "expiration": this.expiration,
+                "quantity": this.qStr,
+                "code": this.barcode
+              }
+
+              await axios.post('http://localhost:8080/api/addmedicine', data)
+              .then((result) => {
+                console.log('SE LOOGROO');
+                console.log(result);
+              })
+
+              this.$router.push({name: 'Medicines'});
+              break
+            }
+          }
+        } else {
+          this.snb = true;
+          this.snackbar = true;
+          this.text = 'REVISAR LOS DATOS ENTRANTES';
+          console.log('REVISAR LOS DATOS ENTRANTES')
+        }
+      } else {
+        this.snb = true;
+        this.snackbar = true;
+        this.text = 'FECHA NO ACEPTADA';
+        //await this.snb;
+        console.log('FECHA NO ACEPTADA')
+      }
     },
 
     retrieveMedicines(){
@@ -97,6 +146,9 @@ export default {
         this.windows = jsObject;
         this.cant = this.windows.length;
         console.log('cantidad '+this.cant.toString());
+        for (var i = 0; i < this.windows.length; i++) {
+          this.codes.push(this.windows[i]["Record"].code);
+        }
       })
       .catch((e) => {
         console.log(e);
