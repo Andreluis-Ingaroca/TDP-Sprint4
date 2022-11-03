@@ -1,7 +1,7 @@
 <template>
     <div class="pt-5 pl-5 pr-5">
       <v-card color="#55B4B0" rounded="xl">
-        <v-card-title class="justify-center text-h3 pt-5 pb-5 font-weight-black">UPDATE QUANTITY</v-card-title>
+        <v-card-title class="justify-center text-h3 pt-5 pb-5 font-weight-black">UPDATE BY MEDICINE ID</v-card-title>
       </v-card>
 
     <v-row class="pt-10"> 

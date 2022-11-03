@@ -23,8 +23,8 @@ const routes = [
         component: () => import('../views/Update.vue')
       },
       {
-        path: 'about',
-        component: () => import('../views/About.vue')
+        path: 'code',
+        component: () => import('../views/UpdateCode.vue')
       }
     ]
   }
