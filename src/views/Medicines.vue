@@ -1,7 +1,7 @@
 <template>
     <div class="pt-5 pl-5 pr-5">
       <v-card color="#55B4B0" rounded="xl">
-        <v-card-title class="justify-center text-h4 pt-5 pb-5 font-weight-black">LIST OF REGISTERED MEDICINES</v-card-title>
+        <v-card-title class="justify-center text-h4 pt-5 pb-5 font-weight-black">LISTA DE MEDICINAS REGISTRADAS</v-card-title>
       </v-card>
 
       <v-container fluid class="pt-10">
@@ -12,26 +12,26 @@
                 <v-btn class="mx-5" fab dark color="teal">{{ medicine["id"] }}</v-btn>
                 <v-card-title class="txtN">{{ medicine["name"] }}</v-card-title>
               </v-row>
-              <v-card-title class="inf">INFORMATION</v-card-title>
+              <v-card-title class="inf">INFORMACION</v-card-title>
               <v-row class="pl-3 pt-1">
-                <v-card-subtitle class="sub">Pharmaceutical Form:</v-card-subtitle>
-                <v-card-subtitle class="data pl-0"> {{ medicine["form"] }}</v-card-subtitle>
+                <v-card-subtitle class="sub">Forma Farmacéutica:</v-card-subtitle>
+                <v-card-subtitle class="data pl-2"> {{ medicine["form"] }}</v-card-subtitle>
               </v-row>
               <v-row class="pl-3 pt-1">
-                <v-card-subtitle class="sub">Concentration: </v-card-subtitle>
-                <v-card-subtitle class="data pl-15"> {{ medicine["concentration"] }}</v-card-subtitle>
+                <v-card-subtitle class="sub">Concentración: </v-card-subtitle>
+                <v-card-subtitle class="data pl-14"> {{ medicine["concentration"] }}</v-card-subtitle>
               </v-row>
               <v-row class="pl-3 pt-1">
-                <v-card-subtitle class="sub">Expiration Date: </v-card-subtitle>
-                <v-card-subtitle class="data pl-12"> {{ medicine["expiration"] }}</v-card-subtitle>
+                <v-card-subtitle class="sub">Fecha de Expiración: </v-card-subtitle>
+                <v-card-subtitle class="data pl-3"> {{ medicine["expiration"] }}</v-card-subtitle>
               </v-row>
               <v-row class="pl-3 pt-1">
-                <v-card-subtitle class="sub">Updated Quantity: </v-card-subtitle>
-                <v-card-subtitle class="data pl-7"> {{ medicine["quantity"] }}</v-card-subtitle>
+                <v-card-subtitle class="sub">Cantidad Actualizada: </v-card-subtitle>
+                <v-card-subtitle class="data pl-0"> {{ medicine["quantity"] }}</v-card-subtitle>
               </v-row>
               <v-row class="pl-3 pt-1">
-                <v-card-subtitle class="sub">Barcode - Lot: </v-card-subtitle>
-                <v-card-subtitle class="data pl-15"> {{ medicine["code"] }}</v-card-subtitle>
+                <v-card-subtitle class="sub">Lote - Código: </v-card-subtitle>
+                <v-card-subtitle class="data pl-16"> {{ medicine["code"] }}</v-card-subtitle>
               </v-row>
               
             </v-card>
