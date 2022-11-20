@@ -1,25 +1,25 @@
 <template>
     <div class="sidebar">
-      <div class="text-h3 font-weight-bold title"> WEB APP </div>
+      <div class="text-h3 font-weight-bold title"> SISTEMA DE VERIFICACION </div>
       <div class="menu-items">
             <router-link to="/" active-class="active" tag="button" exact class="side-btn">
                 <div class="link-container">
-                    Medicines
+                    Medicinas
                 </div>
             </router-link>
             <router-link to="/add" active-class="active" tag="button" exact class="side-btn">
                 <div class="link-container">
-                    Add Medicine
+                    Añadir una medicina
                 </div>
             </router-link>
             <router-link to="/update" active-class="active" tag="button" exact class="side-btn">
                 <div class="link-container">
-                    Update By Medicine Id
+                    Actualizar por el ID
                 </div>
             </router-link>
             <router-link to="/code" active-class="active" tag="button" exact class="side-btn">
                 <div class="link-container">
-                    Update By Barcode
+                    Actualizar por el código
                 </div>
             </router-link>
         </div>
