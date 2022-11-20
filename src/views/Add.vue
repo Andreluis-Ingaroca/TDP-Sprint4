@@ -3,25 +3,25 @@
   <div class="pt-5 pl-5 pr-5">
 
     <v-card color="#55B4B0" rounded="xl">
-        <v-card-title class="justify-center text-h3 pt-5 pb-5 font-weight-black">ADD A MEDICINE</v-card-title>
+        <v-card-title class="justify-center text-h4 pt-5 pb-5 font-weight-black">AÑADIR UNA MEDICINA</v-card-title>
     </v-card>
 
     <v-row class="pt-10"> 
       <v-col cols="12" sm="8">
         <v-card color="#55B4B0" rounded="xl">
-          <v-card-title class="justify-center text-h5 pt-5 pb-5 font-weight-black">REGISTRATION FORM</v-card-title>
+          <v-card-title class="justify-center text-h5 pt-5 pb-5 font-weight-black">FORMULARIO DE REGISTRO</v-card-title>
 
           <form @submit.prevent="submit" color="blue lighten-1">
             <vue-title title="Static Title"></vue-title>
-            <v-text-field color="white" class="pl-10 pt-2 pr-10" v-model="cant" v-bind="{ placeholder: 'MEDICINE'+ this.cant.toString() }" label="MEDICINE ID" disabled></v-text-field>
-            <v-text-field color="white" class="pl-10 pt-2 pr-10" v-model="name" label="Generic Name" required></v-text-field>
-            <v-text-field color="white" class="pl-10 pt-2 pr-10" v-model="concentration" label="Concentration" required></v-text-field>
-            <v-text-field color="white" class="pl-10 pt-2 pr-10" v-model="form" label="Pharmaceutical Form" required></v-text-field>
-            <v-text-field color="white" type="Date" class="pl-10 pt-2 pr-10" v-model="expiration" hint="Expiration Date" required></v-text-field>
-            <v-text-field color="white" type="number" class="pl-10 pt-2 pr-10" v-model="quantity" label="Quantity" required></v-text-field>
-            <v-text-field color="white" class="pl-10 pt-2 pr-10" v-model="barcode" label="Barcode" required></v-text-field>
+            <v-text-field color="white" class="pl-10 pt-2 pr-10" v-model="cant" v-bind="{ placeholder: 'MEDICINE'+ this.cant.toString() }" label="MEDICINA ID" disabled></v-text-field>
+            <v-text-field color="white" class="pl-10 pt-2 pr-10" v-model="name" label="Nombre Génerico" required></v-text-field>
+            <v-text-field color="white" class="pl-10 pt-2 pr-10" v-model="concentration" label="Concentración" required></v-text-field>
+            <v-text-field color="white" class="pl-10 pt-2 pr-10" v-model="form" label="Forma Farmacéutica" required></v-text-field>
+            <v-text-field color="white" type="Date" class="pl-10 pt-2 pr-10" v-model="expiration" hint="Fecha de Expiración" required></v-text-field>
+            <v-text-field color="white" type="number" class="pl-10 pt-2 pr-10" v-model="quantity" label="Cantidad" required></v-text-field>
+            <v-text-field color="white" class="pl-10 pt-2 pr-10" v-model="barcode" label="Lote - Código" required></v-text-field>
             <v-col cols="12" class="pb-3 pl-10 pt-2 pr-10">
-              <v-btn @click="submit" block color="blue lighten-1">SUBMIT</v-btn>
+              <v-btn @click="submit" block color="blue lighten-1">ENVIAR</v-btn>
             </v-col>
           </form>
       </v-card>
@@ -36,7 +36,7 @@
       <v-snackbar v-model="snackbar" :timeout="-1" :value="true" bottom :multi-line="multiLine" color="primary">{{ text }}
         <template v-slot:action="{ attrs }">
           <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
-            Close
+            Cerrar
           </v-btn>
         </template>
       </v-snackbar> 
